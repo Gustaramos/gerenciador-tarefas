@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TaskService } from './services/task.service';
 import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
-  styles: []
+  styleUrls: [/*'./app.component.css'*/]
 })
-export class App implements OnInit {
+export class AppComponent implements OnInit {
   tasks: Task[] = [];
   errorMessage: string = '';
 
@@ -24,7 +24,6 @@ export class App implements OnInit {
     this.taskService.getTasks().subscribe({
       next: (data) => {
         this.tasks = data;
-        this.errorMessage = '';
       },
       error: (err) => {
         this.errorMessage = 'Erro ao carregar dados do Swagger. Verifique o CORS!';
